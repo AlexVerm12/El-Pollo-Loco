@@ -7,7 +7,9 @@ class Character extends MovableObject {
     "../img/2_character_pepe/2_walk/W-25.png",
     "../img/2_character_pepe/2_walk/W-26.png",
   ];
+  speed = 10;
   world;
+  walking_sound = new Audio('../audio/steps.mp3')
 
   constructor() {
     super().loadImage("../img/2_character_pepe/2_walk/W-21.png");
@@ -18,13 +20,26 @@ class Character extends MovableObject {
 
   animate() {
     setInterval(() => {
-      if (this.world.keyboard.right) {
-        let i = this.currentImage % this.IMAGES_WALKING.length; // let i = 0 % 6; das ganze heißt modulu. 0 wird durch 6 geteilt und nur der rest (in ganzen zahlen) wird übergeben.
-        let path = this.IMAGES_WALKING[i]; // z.B.: 0 %(modulu) 6 = 0 rest 0 ; 1 % 6 = 0 rest 1; Das heißt i = [0,1,2,3,4,5,0,1,2,3,4,5,0,1...]
-        this.img = this.imageCash[path];
-        this.currentImage++;
+        if (this.world.keyboard.right && this.x < this.world.level.level_end_x) {
+          this.x += this.speed;
+          this.otherDirection = false;
+          this.walking_sound.play();
+          this.walking_sound.playbackRate = 2.0;
+        }
+        if (this.world.keyboard.left && this.x > -200 ) {
+            this.x -= this.speed;
+            this.otherDirection = true;
+            this.walking_sound.play();
+            this.walking_sound.playbackRate = 2.0;
+          }
+          this.world.camera_x = -this.x + 100;
+    },1000 / 60);
+
+    setInterval(() => {
+      if (this.world.keyboard.right || this.world.keyboard.left) {
+        this.playAnimation(this.IMAGES_WALKING);
       }
-    }, 100);
+    }, 50);
   }
 
   jump() {}
