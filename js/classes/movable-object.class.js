@@ -10,6 +10,7 @@ class MovableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 1;
+  energy = 100;
 
   draw(ctx) {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
@@ -23,6 +24,17 @@ class MovableObject {
       ctx.rect(this.x, this.y, this.width, this.height);
       ctx.stroke();
     }
+  }
+
+  hit() {
+    this.energy -= 5;
+    if (this.energy < 0) {
+      this.energy = 0;
+    }
+  }
+
+  isDead() {
+    return this.energy == 0;
   }
 
   applyGravity() {
@@ -71,12 +83,11 @@ class MovableObject {
     this.x -= this.speed;
   }
 
-  
   isColliding(mo) {
-    return this.x =
+    return (this.x =
       this.width > mo.x &&
       this.y + this.height > mo.y &&
       this.x < mo.x &&
-      this.y < mo.y + mo.height;
+      this.y < mo.y + mo.height);
   }
 }
