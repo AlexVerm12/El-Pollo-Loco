@@ -35,7 +35,7 @@ class MovableObject extends DrawableObject {
   }
 
   isAboveGround() {
-    if( this instanceof Bottle){ // Bottle should always fall
+    if( this instanceof ThrowableObject){ // Bottle should always fall
       return true;
     } else {
     return this.y < 220;
