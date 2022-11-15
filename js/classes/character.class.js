@@ -66,6 +66,11 @@ class Character extends MovableObject {
   }
 
   animate() {
+    this.intervalFunction();
+    this.intervalAnimation();
+  }
+
+  intervalFunction() {
     setInterval(() => {
       if (this.world.keyboard.right && this.x < this.world.level.level_end_x) {
         this.moveRight();
@@ -85,22 +90,38 @@ class Character extends MovableObject {
 
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
-
-    setInterval(() => {
-        if (this.isDead()) {
-            this.playAnimation(this.IMAGES_DEAD);
-        } else if (this.isHurt()) {
-          this.playAnimation(this.IMAGES_HURT);
-        }
-      else if (this.isAboveGround()) {
-        this.playAnimation(this.IMAGES_JUMPING);
-      } else {
-        if (this.world.keyboard.right || this.world.keyboard.left) {
-          this.playAnimation(this.IMAGES_WALKING);
-        }
-      }
-    }, 50);
   }
 
-  
+  intervalAnimation() {
+    setInterval(() => {
+      if (!this.world.keyboard.right || !this.world.keyboard.left) {
+        this.playAnimation(this.IMAGES_STANDING);
+      }
+    }, 350);
+
+    setInterval(() => {
+      if (this.world.keyboard.right && !this.isAboveGround() || this.world.keyboard.left && !this.isAboveGround()) {
+        this.playAnimation(this.IMAGES_WALKING);
+      }
+    }, 50);
+
+    setInterval(() => {
+      if (this.isDead()) {
+        this.playAnimation(this.IMAGES_DEAD);
+      }
+    }, 150);
+
+    setInterval(() => {
+      if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURT);
+      }
+    }, 80);
+
+    setInterval(() => {
+      if (this.isAboveGround()) {
+        this.playAnimation(this.IMAGES_JUMPING);
+      }
+    }, 200);
+
+  }
 }
