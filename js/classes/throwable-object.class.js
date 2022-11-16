@@ -2,6 +2,7 @@ class ThrowableObject extends MovableObject {
   y = 350;
   width = 60;
   height = 75;
+
   IMAGES = [
     "./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
     "./img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png",
@@ -9,29 +10,55 @@ class ThrowableObject extends MovableObject {
     "./img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png"
   ];
 
+  IMAGES_BOTTLE_SPLASH = [
+    'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
+    'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
+    'img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png',
+    'img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
+    'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
+    'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
+  ];
+
   constructor(x, y) {
     super().loadImage(this.IMAGES[0]);
     this.loadImages(this.IMAGES);
-    this.y = y;
+    this.loadImages(this.IMAGES_BOTTLE_SPLASH);
     this.x = x;
-    this.throw(100, 100);
-    this.animate();
+    this.y = y;
+    
+    if (world.character.otherDirection == true) {
+      this.throwLeft(-150,-100)
+    } else {
+      this.throw(100,100);
+    }
+
   }
 
   throw() {
     this.speedY = 15;
     this.applyGravity();
     setInterval(() => {
-      this.x += 5;
-    }, 25)
+      this.x += 10;
+    }, 40)
+    this.animate();
+  }
+
+  throwLeft() {
+    this.speedY = 15;
+    this.applyGravity();
+    setInterval(() => {
+      this.x -= 10;
+    }, 40)
+    this.animate();
   }
 
   animate() {
     setInterval(() => {
-      let i = this.currentImage % this.IMAGES.length; // let i = 0 % 6; das ganze heißt modulu. 0 wird durch 6 geteilt und nur der rest (in ganzen zahlen) wird übergeben.
-      let path = this.IMAGES[i]; // z.B.: 0 %(modulu) 6 = 0 rest 0 ; 1 % 6 = 0 rest 1; Das heißt i = [0,1,2,3,4,5,0,1,2,3,4,5,0,1...]
-      this.img = this.imageCash[path];
-      this.currentImage++;
+     if (this.y > 350) {
+      this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+     } else {
+      this.playAnimation(this.IMAGES);
+     }
     }, 1000 / 60);
   }
 }

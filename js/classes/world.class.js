@@ -32,15 +32,17 @@ class World {
 
   checkThrowObjects() {
     if (this.keyboard.D) {
-      let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+      let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 50 );
       this.throwableObjects.push(bottle);
-
-
     }
   }
 
 
   checkCollision() {
+    this.collidingEnemy();
+  }
+
+  collidingEnemy(){
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
@@ -48,6 +50,7 @@ class World {
       }
     });
   }
+
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
