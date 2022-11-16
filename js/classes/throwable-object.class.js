@@ -27,9 +27,9 @@ class ThrowableObject extends MovableObject {
     this.y = y;
     
     if (world.character.otherDirection == true) {
-      this.throwLeft(-150,-100)
+      this.throwLeft()
     } else {
-      this.throw(100,100);
+      this.throw();
     }
 
   }
