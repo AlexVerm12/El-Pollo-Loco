@@ -36,6 +36,7 @@ class World {
       let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 50 );
       this.throwableObjects.push(bottle);
       this.throwableBottles --;
+      this.bottleBar.setPercentage(this.throwableBottles);
     }
   }
 
