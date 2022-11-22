@@ -48,6 +48,7 @@ class World {
     this.collidingBottle();
     this.collidingCoin();
     this.collidingEnemyJump();
+    this.CollidingBottleWithEnemy();
   }
 
   collidingEnemy(){
@@ -76,6 +77,16 @@ class World {
         this.bottleBar.setPercentage(this.throwableBottles);
       }
     });
+  }
+
+  CollidingBottleWithEnemy() {
+    this.level.enemies.forEach((enemy,index) => {
+      this.throwableObjects.forEach((bottle, index) => {
+        if (bottle.isColliding(enemy)) {
+          this.level.enemies.splice(enemy,1);
+        }
+      })
+    })
   }
 
   collidingCoin(){
