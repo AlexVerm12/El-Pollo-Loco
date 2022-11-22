@@ -62,9 +62,9 @@ class World {
 
   collidingEnemyJump() {
     this.level.enemies.forEach((enemy,index) => {
-      if (this.character.isColliding(enemy,1) && this.character.isAboveGround() && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
+      if (this.character.isColliding(enemy) && this.character.isAboveGround() && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
         enemy.energy = 0;
-        this.level.enemies.splice(enemy,1);
+        this.level.enemies.splice(index,1);
       }
     });
   }
@@ -73,17 +73,18 @@ class World {
     this.level.bottles.forEach((bottle,index) => {
       if(this.character.isColliding(bottle)){
         this.throwableBottles ++;
-        this.level.bottles.splice(bottle,1);
+        this.level.bottles.splice(index,1);
         this.bottleBar.setPercentage(this.throwableBottles);
       }
     });
   }
 
   CollidingBottleWithEnemy() {
-    this.level.enemies.forEach((enemy,index) => {
-      this.throwableObjects.forEach((bottle, index) => {
-        if (bottle.isColliding(enemy)) {
-          this.level.enemies.splice(enemy,1);
+    this.level.enemies.forEach((enemy,index1) => {
+      this.throwableObjects.forEach((bottle, index2) => {
+        if (bottle.isColliding(enemy) && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
+          this.level.enemies.splice(index1,1);
+          this.throwableObjects.splice(index2,1);
         }
       })
     })
@@ -93,7 +94,7 @@ class World {
     this.level.coins.forEach((coin,index) => {
       if(this.character.isColliding(coin)){
         this.totalCoins ++;
-        this.level.coins.splice(coin,1);
+        this.level.coins.splice(index,1);
         this.coinBar.setPercentage(this.totalCoins);
       }
     });
