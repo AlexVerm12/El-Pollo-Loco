@@ -47,14 +47,23 @@ class World {
     this.collidingEnemy();
     this.collidingBottle();
     this.collidingCoin();
-
+    this.collidingEnemyJump();
   }
 
   collidingEnemy(){
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy)) {
+      if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy)
+      }
+    });
+  }
+
+  collidingEnemyJump() {
+    this.level.enemies.forEach((enemy,index) => {
+      if (this.character.isColliding(enemy,1) && this.character.isAboveGround() && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
+        enemy.energy = 0;
+        this.level.enemies.splice(enemy,1);
       }
     });
   }
