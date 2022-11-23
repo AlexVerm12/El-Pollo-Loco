@@ -12,17 +12,47 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = "2";
             ctx.strokeStyle = "blue";
-            ctx.rect(this.x + 25, this.y + 70, this.width - 70, this.height -70);
+            ctx.rect(this.x + 50, this.y + 100, this.width - 100, this.height -110);
             ctx.stroke();
         }
     }
 
     drawFrameChicken(ctx) {
-        if (this instanceof SmallChicken || this instanceof Chicken || this instanceof Coin || this instanceof Bottle || this instanceof Endboss || this instanceof ThrowableObject ) {
+        if (this instanceof SmallChicken || this instanceof Chicken) {
             ctx.beginPath();
             ctx.lineWidth = "2";
             ctx.strokeStyle = "blue";
-            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.rect(this.x +10, this.y + 10, this.width - 20, this.height - 20);
+            ctx.stroke();
+        }
+    }
+
+    drawFrameEndboss(ctx) {
+        if (this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.lineWidth = "2";
+            ctx.strokeStyle = "blue";
+            ctx.rect(this.x + 40, this.y + 100, this.width -70, this.height - 130);
+            ctx.stroke();
+        }
+    }
+
+    drawFrameCoin(ctx) {
+        if (this instanceof Coin) {
+            ctx.beginPath();
+            ctx.lineWidth = "2";
+            ctx.strokeStyle = "blue";
+            ctx.rect(this.x + 30, this.y + 30, this.width - 60, this.height - 60);
+            ctx.stroke();
+        }
+    }
+
+    drawFrameBottle(ctx) {
+        if (this instanceof Bottle || this instanceof ThrowableObject) {
+            ctx.beginPath();
+            ctx.lineWidth = "2";
+            ctx.strokeStyle = "blue";
+            ctx.rect(this.x + 25, this.y + 20, this.width - 40, this.height - 30);
             ctx.stroke();
         }
     }

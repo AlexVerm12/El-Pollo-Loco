@@ -155,6 +155,9 @@ class World {
     mo.draw(this.ctx);
     mo.drawFrame(this.ctx);
     mo.drawFrameChicken(this.ctx);
+    mo.drawFrameBottle(this.ctx);
+    mo.drawFrameCoin(this.ctx);
+    mo.drawFrameEndboss(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
