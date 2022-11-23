@@ -71,9 +71,53 @@ class MovableObject extends DrawableObject {
   }
 
   isColliding(mo) {
-    return (this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+    return this.isHorizontalIntersection(mo) && this.isVerticalIntersection(mo);
+    
+    /*(this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
       this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
       this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-      this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom);
+      this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom);*/
   }
+
+  isVerticalIntersection(mo){
+    return !(this.isAbove(mo) || this.isBelow(mo));
+  }
+
+  isHorizontalIntersection(mo){
+    return !(this.isLeftSide(mo) || this.isRightSide(mo));
+  }
+
+  isAbove(mo){
+    return !(this.getHitBoxBottomPos() > mo.getHitBoxTopPos());
+  }
+
+  isBelow(mo){
+    return !(this.getHitBoxTopPos() < mo.getHitBoxBottomPos());
+  }
+
+  isLeftSide(mo){
+    return !(this.getHitBoxRightPos() > mo.getHitBoxLeftPos());
+  }
+
+  isRightSide(mo){
+    return !(this.getHitBoxLeftPos() < mo.getHitBoxRightPos());
+  }
+
+  getHitBoxRightPos(){
+    return this.x + this.width - this.offset.right;
+  }
+
+  getHitBoxLeftPos(){
+    return this.x + this.offset.left;
+  }
+
+  getHitBoxTopPos(){
+    return this.y + this.offset.top;
+  }
+
+  getHitBoxBottomPos(){
+    return this.y + this.height - this.offset.bottom;
+  }
+
+
 }

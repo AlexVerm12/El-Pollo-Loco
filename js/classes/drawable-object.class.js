@@ -6,8 +6,8 @@ class DrawableObject {
     y = 230;
     height = 200;
     width = 150;
-
-    drawFrame(ctx) {
+// Bilderrahmen um die Objekte um die Collision festzustellen
+    /*drawFrame(ctx) {
         if (this instanceof Character) {
             ctx.beginPath();
             ctx.lineWidth = "2";
@@ -18,11 +18,11 @@ class DrawableObject {
     }
 
     drawFrameChicken(ctx) {
-        if (this instanceof SmallChicken || this instanceof Chicken) {
+        if (this instanceof Character) {
             ctx.beginPath();
             ctx.lineWidth = "2";
-            ctx.strokeStyle = "blue";
-            ctx.rect(this.x +10, this.y + 10, this.width - 20, this.height - 20);
+            ctx.strokeStyle = "red";
+            ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
     }
@@ -55,7 +55,7 @@ class DrawableObject {
             ctx.rect(this.x + 25, this.y + 20, this.width - 40, this.height - 30);
             ctx.stroke();
         }
-    }
+    }*/
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }

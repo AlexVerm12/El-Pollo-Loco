@@ -44,12 +44,11 @@ class Endboss extends MovableObject {
   ];
 
   offset = {
-    top: 40,
-    left: 100,
-    right: -70,
-    bottom: -130,
+    top: 80,
+    left: 40,
+    right: 50,
+    bottom: 30,
   };
-
   constructor() {
     super().loadImage(this.IMAGES_ALERT[0]);
     this.loadImages(this.IMAGES_ALERT);
