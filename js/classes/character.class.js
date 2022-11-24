@@ -135,10 +135,11 @@ class Character extends MovableObject {
       }
     }, 230);
 
-   setStoppableIntervale(() => {
+    setInterval(() => {
       if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DEAD);
-        this.death_sound.play();
+       this.playAnimation(this.IMAGES_DEAD);
+       this.death_sound.play();
+        
       }
     }, 190);
 

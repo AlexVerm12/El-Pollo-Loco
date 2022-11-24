@@ -6,16 +6,9 @@ class DrawableObject {
     y = 230;
     height = 200;
     width = 150;
-    intervalIds = [];
+    
 
-    setStoppableIntervale(fn,time){
-        let id = setinterval(fn,time)
-        this.intervalIds.push(id);
-    }
-
-    stopGame(){
-        this.intervalIds.forEach(clearInterval);
-    }
+   
 
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);

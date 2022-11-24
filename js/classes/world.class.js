@@ -38,7 +38,7 @@ class World {
     setInterval(() => {
       this.checkCollision();
       this.checkThrowObjects();
-    }, 200);
+    }, 200 );
   }
 
   checkThrowObjects() {
@@ -57,6 +57,7 @@ class World {
     this.collidingCoin();
     this.collidingEnemyJump();
     this.CollidingBottleWithEnemy();
+  
   }
 
   collidingEnemy() {
@@ -114,6 +115,7 @@ class World {
     })
   }
 
+
   collidingCoin() {
     this.level.coins.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
@@ -124,6 +126,14 @@ class World {
       }
     });
   }
+
+ /* gameWon(){
+    this.level.enemies.forEach((enemy) => {
+      if (enemy.energy == 0 && enemy instanceof Endboss) {   
+          clearAllIntervals();
+      }
+    });
+  }*/
 
 
 

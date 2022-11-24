@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/Favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href= "fonts.css">
+    <link rel="stylesheet" href="fonts.css">
     <script src="./js/classes/drawable-object.class.js"></script>
     <script src="./js/classes/status-bar.class.js"></script>
     <script src="./js/classes/coin-bar.class.js"></script>
@@ -28,12 +30,37 @@
     <script src="./js/game.js"></script>
     <title>El Pollo Loco</title>
 </head>
+
 <body onload="init()">
     <h1>El Pollo Loco</h1>
 
     <canvas id="canvas" height="480" width="720">
 
+   
+
+        <div id="mobile-buttons" class="d-none">
+            <div id="walk-buttons">
+                <div id="walk-button-left" class="game-button">
+                    <img src="./img/btnleft.png">
+                </div>
+                <div id="walk-button-right" class="game-button">
+                    <img src="./img/btnright.png">
+                </div>
+            </div>
+            <div id="action-buttons">
+                <div id="jump-button" class="game-button">
+                    <img src="./img/btnup.png">
+                </div>
+                <div id="shoot-button" class="game-button">
+                    <img src="./img/btnshoot.png">
+                </div>
+
+            </div>
+
+        </div>
     </canvas>
     
+
 </body>
+
 </html>
