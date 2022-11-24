@@ -4,6 +4,7 @@ class Endboss extends MovableObject {
   y = 53;
   energy = 25;
   speed = 4;
+  
 
   IMAGES_ALERT = [
     "./img/4_enemie_boss_chicken/2_alert/G5.png",
@@ -85,6 +86,7 @@ class Endboss extends MovableObject {
     setInterval(() => {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
+      
       }
     }, 300);
 

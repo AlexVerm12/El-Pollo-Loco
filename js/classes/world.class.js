@@ -32,13 +32,14 @@ class World {
 
   setWorld() {
     this.character.world = this;
+    
   }
 
   run() {
     setInterval(() => {
       this.checkCollision();
       this.checkThrowObjects();
-    }, 200 );
+    }, 200);
   }
 
   checkThrowObjects() {
@@ -57,7 +58,8 @@ class World {
     this.collidingCoin();
     this.collidingEnemyJump();
     this.CollidingBottleWithEnemy();
-  
+    
+
   }
 
   collidingEnemy() {
@@ -76,8 +78,8 @@ class World {
         setTimeout(() => {
           this.level.enemies.splice(index, 1);
         }, 200);
-        this.character.jump();  
-        this.jump_sound.play(); 
+        this.character.jump();
+        this.jump_sound.play();
       }
     });
   }
@@ -127,13 +129,16 @@ class World {
     });
   }
 
- /* gameWon(){
-    this.level.enemies.forEach((enemy) => {
-      if (enemy.energy == 0 && enemy instanceof Endboss) {   
-          clearAllIntervals();
-      }
-    });
-  }*/
+  gameOver() {
+    this.level.enemies.forEach((enemy, index) => {
+    if (this.character.isDead() || (enemy.energy == 0 && enemy instanceof Endboss)) {
+      
+    }
+    setTimeout(() => {
+      clearAllIntervals();
+    }, 1000);
+  });
+  }
 
 
 
@@ -176,11 +181,11 @@ class World {
       this.flipImage(mo);
     }
     mo.draw(this.ctx);
-   /* mo.drawFrame(this.ctx);
-    mo.drawFrameChicken(this.ctx);
-    mo.drawFrameBottle(this.ctx);
-    mo.drawFrameCoin(this.ctx);
-    mo.drawFrameEndboss(this.ctx);*/
+    /* mo.drawFrame(this.ctx);
+     mo.drawFrameChicken(this.ctx);
+     mo.drawFrameBottle(this.ctx);
+     mo.drawFrameCoin(this.ctx);
+     mo.drawFrameEndboss(this.ctx);*/
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
