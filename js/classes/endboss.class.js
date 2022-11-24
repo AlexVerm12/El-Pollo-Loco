@@ -1,8 +1,9 @@
 class Endboss extends MovableObject {
-    width = 300;
-    height = 400;
-    y = 53;
-    energy = 25;
+  width = 300;
+  height = 400;
+  y = 53;
+  energy = 25;
+  speed = 4;
 
   IMAGES_ALERT = [
     "./img/4_enemie_boss_chicken/2_alert/G5.png",
@@ -60,9 +61,33 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
-  animate(){
+  animate() {
+
     setInterval(() => {
+      if (this.energy < 25 && this.energy > 0) {
+        this.moveLeft();
+        this.playAnimation(this.IMAGES_WALK);
+      }
+    }, 100);
+
+    setInterval(() => {
+      if (this.energy == 25) {
         this.playAnimation(this.IMAGES_ALERT);
-      }, 400);
+      }
+    }, 400);
+
+    setInterval(() => {
+      if (this.isHurt()) {
+      this.playAnimation(this.IMAGES_HURT); 
+      }
+    }, 100);
+
+    setInterval(() => {
+      if (this.isDead()) {
+        this.playAnimation(this.IMAGES_DEAD);
+      }
+    }, 300);
+
   }
+
 }

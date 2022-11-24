@@ -25,6 +25,7 @@ class ThrowableObject extends MovableObject {
     right: 0,
     bottom: 0,
   };
+  splash_sound = new Audio("./audio/splash.mp3")
 
   constructor(x, y) {
     super().loadImage(this.IMAGES[0]);
@@ -40,6 +41,7 @@ class ThrowableObject extends MovableObject {
     }
 
   }
+
 
   throw() {
     this.speedY = 15;
@@ -63,6 +65,7 @@ class ThrowableObject extends MovableObject {
    var id1 = setInterval(() => {
      if (this.y > 350) {
       this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+      this.splash_sound.play();
       this.speedY = 0;
       clearInterval(id1);
       

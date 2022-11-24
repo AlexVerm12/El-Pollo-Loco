@@ -6,6 +6,34 @@ class DrawableObject {
     y = 230;
     height = 200;
     width = 150;
+    intervalIds = [];
+
+    setStoppableIntervale(fn,time){
+        let id = setinterval(fn,time)
+        this.intervalIds.push(id);
+    }
+
+    stopGame(){
+        this.intervalIds.forEach(clearInterval);
+    }
+
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    // loadImage(img/test.png)
+    loadImage(path) {
+        this.img = new Image(); // this.img = document.getElementById('image');  <img id="image" src="">
+        this.img.src = path;
+    }
+    /* @param {Array} arr - [ 'img/image1.png', 'img/image2.png'....]*/
+    loadImages(arr) {
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCash[path] = img;
+        });
+    }
 // Bilderrahmen um die Objekte um die Collision festzustellen
     /*drawFrame(ctx) {
         if (this instanceof Character) {
@@ -56,21 +84,5 @@ class DrawableObject {
             ctx.stroke();
         }
     }*/
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    // loadImage(img/test.png)
-    loadImage(path) {
-        this.img = new Image(); // this.img = document.getElementById('image');  <img id="image" src="">
-        this.img.src = path;
-    }
-    /* @param {Array} arr - [ 'img/image1.png', 'img/image2.png'....]*/
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCash[path] = img;
-        });
-    }
+   
 }

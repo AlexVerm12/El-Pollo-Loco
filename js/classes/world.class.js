@@ -12,6 +12,12 @@ class World {
   throwableObjects = [];
   throwableBottles = 0;
   totalCoins = 0;
+  jump_sound = new Audio("./audio/jump.mp3");
+  coin_sound = new Audio("./audio/coin.mp3");
+  pickup_sound = new Audio("./audio/pickup.mp3");
+  hit_sound = new Audio("./audio/hit.mp3");
+
+
 
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -21,6 +27,8 @@ class World {
     this.setWorld();
     this.run();
   }
+
+
 
   setWorld() {
     this.character.world = this;
@@ -67,7 +75,8 @@ class World {
         setTimeout(() => {
           this.level.enemies.splice(index, 1);
         }, 200);
-        this.character.jump();
+        this.character.jump();  
+        this.jump_sound.play(); 
       }
     });
   }
@@ -76,6 +85,7 @@ class World {
     this.level.bottles.forEach((bottle, index) => {
       if (this.character.isColliding(bottle)) {
         this.throwableBottles++;
+        this.pickup_sound.play();
         this.level.bottles.splice(index, 1);
         this.bottleBar.setPercentage(this.throwableBottles);
       }
@@ -87,14 +97,15 @@ class World {
       this.throwableObjects.forEach((bottle, index2) => {
         if (bottle.isColliding(enemy) && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
           enemy.hit();
+          this.hit_sound.play();
           this.throwableObjects.splice(index2, 1);
           setTimeout(() => {
             this.level.enemies.splice(index1, 1);
           }, 200);
         } else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
           enemy.hit();
+          this.hit_sound.play();
           this.endbossBar.setPercentage(enemy.energy);
-
           setTimeout(() => {
             this.throwableObjects.splice(index2, 1);
           }, 100);
@@ -106,12 +117,14 @@ class World {
   collidingCoin() {
     this.level.coins.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
+        this.coin_sound.play();
         this.totalCoins++;
         this.level.coins.splice(index, 1);
         this.coinBar.setPercentage(this.totalCoins);
       }
     });
   }
+
 
 
   draw() {

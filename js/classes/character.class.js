@@ -54,12 +54,14 @@ class Character extends MovableObject {
   world;
   walking_sound = new Audio("./audio/steps.mp3");
   jump_sound = new Audio("./audio/jump.mp3");
+  death_sound = new Audio("./audio/death.mp3");
+  hurt_sound = new Audio("./audio/hurt.mp3")
 
   offset = {
     top: 100,
     left: 50,
     right: 60,
-    bottom: 30,
+    bottom: 5,
   };
 
   constructor() {
@@ -76,7 +78,9 @@ class Character extends MovableObject {
   animate() {
     this.intervalFunction();
     this.intervalAnimation();
+    this.setStoppableIntervale(this.looseGame(), 190);
   }
+  
 
   intervalFunction() {
     setInterval(() => {
@@ -95,12 +99,14 @@ class Character extends MovableObject {
       if (this.world.keyboard.space && !this.isAboveGround()) {
         this.jump();
         this.jump_sound.play();
-        
+
       }
 
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
   }
+
+
 
   intervalAnimation() {
     setInterval(() => {
@@ -115,15 +121,11 @@ class Character extends MovableObject {
       }
     }, 50);
 
-    setInterval(() => {
-      if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DEAD);
-      }
-    }, 190);
 
     setInterval(() => {
       if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
+        this.hurt_sound.play();
       }
     }, 80);
 
@@ -133,5 +135,23 @@ class Character extends MovableObject {
       }
     }, 230);
 
+   /* setInterval(() => {
+      if (this.isDead()) {
+        this.playAnimation(this.IMAGES_DEAD);
+        this.death_sound.play();
+      }
+    }, 190);*/
+
   }
+
+  looseGame(){
+    
+      if (this.isDead()) {
+        this.playAnimation(this.IMAGES_DEAD);
+        this.death_sound.play();
+      }
+    
+  }
+
+
 }
