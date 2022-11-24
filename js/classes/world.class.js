@@ -132,7 +132,7 @@ class World {
 
   gameOver() {
     this.level.enemies.forEach((enemy, index) => {
-    if (this.character.isDead() || (enemy.isDead() == 0 && enemy instanceof Endboss)) {
+    if (this.character.isDead() || (enemy.isDead() && enemy instanceof Endboss)) {
       setTimeout(() => {
         clearAllIntervals();
       }, 1000);
