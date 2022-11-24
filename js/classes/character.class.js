@@ -78,7 +78,7 @@ class Character extends MovableObject {
   animate() {
     this.intervalFunction();
     this.intervalAnimation();
-    this.setStoppableIntervale(this.looseGame(), 190);
+    
   }
   
 
@@ -135,22 +135,13 @@ class Character extends MovableObject {
       }
     }, 230);
 
-   /* setInterval(() => {
+   setStoppableIntervale(() => {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
         this.death_sound.play();
       }
-    }, 190);*/
+    }, 190);
 
-  }
-
-  looseGame(){
-    
-      if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DEAD);
-        this.death_sound.play();
-      }
-    
   }
 
 
