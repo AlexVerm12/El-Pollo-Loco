@@ -16,6 +16,7 @@ class World {
   coin_sound = new Audio("./audio/coin.mp3");
   pickup_sound = new Audio("./audio/pickup.mp3");
   hit_sound = new Audio("./audio/hit.mp3");
+  endboss = new Endboss();
 
 
 
@@ -58,7 +59,7 @@ class World {
     this.collidingCoin();
     this.collidingEnemyJump();
     this.CollidingBottleWithEnemy();
-    
+    this.gameOver();
 
   }
 
@@ -131,12 +132,12 @@ class World {
 
   gameOver() {
     this.level.enemies.forEach((enemy, index) => {
-    if (this.character.isDead() || (enemy.energy == 0 && enemy instanceof Endboss)) {
-      
+    if (this.character.isDead() || (enemy.isDead() == 0 && enemy instanceof Endboss)) {
+      setTimeout(() => {
+        clearAllIntervals();
+      }, 1000);
     }
-    setTimeout(() => {
-      clearAllIntervals();
-    }, 1000);
+   
   });
   }
 
