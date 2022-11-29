@@ -133,13 +133,17 @@ class World {
   gameOver() {
     this.level.enemies.forEach((enemy, index) => {
     if (this.character.isDead() || (enemy.isDead() && enemy instanceof Endboss)) {
+      document.getElementById('endscreen-container').classList.remove('d-none');
       setTimeout(() => {
         clearAllIntervals();
-      }, 1000);
+
+      }, 1500);
     }
    
   });
   }
+
+
 
 
 

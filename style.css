@@ -1,43 +1,141 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-image: url('./img/background1.png');
-    background-size:cover;
+    background-size: cover;
     font-family: 'Eczar', sans-serif;
     background-repeat: no-repeat;
     height: 100vh;
     width: 100vw;
     margin: 0;
-   
+
 }
 
-h1{
+#content {
+    position: relative;
+}
+
+#startscreen {
+    width: 720px;
+    height: 480px;
+    position: absolute;
+    top: 0;
+    ;
+}
+
+#endscreen {
+    width: 720px;
+    height: 480px;
+    position: absolute;
+    top: 0;
+}
+
+#play-btn {
+    position: absolute;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    cursor: pointer;
+}
+
+#restart-btn {
+    position: absolute;
+    width: 100px;
+    top: 70%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    cursor: pointer;
+}
+
+h1 {
     font-size: 42px;
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
     margin: 20px;
 
 }
 
-canvas{
+canvas {
     background-color: black;
-    
+
+}
+
+.d-none {
+    display: none;
 }
 
 
-@media only screen and (max-width:720px){
+@media only screen and (max-width:780px) {
+    #content {
+        width: 100%;
+    }
+
     canvas {
-        width:100%;
+        width: 100%;
     }
 
     h1 {
         display: none;
     }
+
+    #startscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #endscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+
+    body {
+        background-color: antiquewhite;
+        background-image: none;
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width:990px) {
+    #content {
+        width: 100%;
+    }
+
+    canvas {
+        width: 100%;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    #startscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #endscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+
+    body {
+        background-color: antiquewhite;
+        background-image: none;
+        margin: 0;
+    }
 }
 
 
-@media only screen and (max-height:480px){
-    canvas {
-        height:100vh;
+@media only screen and (max-height:480px) {
+    #content {
+        height: 100vh;
     }
+
+    canvas {
+        height: 100vh;
+    }
+
 }

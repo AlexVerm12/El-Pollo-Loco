@@ -5,9 +5,15 @@ let keyboard = new Keyboard();
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-
+    document.getElementById('startscreen-container').classList.add('d-none');
 }
+
+function restart(){
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+    document.getElementById('endscreen-container').classList.add('d-none');
+}
+
 /* Alternative (quick and dirty), um alle Intervalle zu beenden. */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);

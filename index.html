@@ -31,12 +31,20 @@
     <title>El Pollo Loco</title>
 </head>
 
-<body onload="init()">
+<body onload="">
     <h1>El Pollo Loco</h1>
+    <div id="content">
+        <canvas id="canvas" height="480" width="720"></canvas>
 
-    <canvas id="canvas" height="480" width="720">
+        <div id="startscreen-container">
+            <img id="startscreen" src="./img/9_intro_outro_screens/start/startscreen_1.png">
+            <img id="play-btn" onclick="init()" src="./img/spiel.png">
+        </div>
 
-   
+        <div id="endcsreen-container" class="d-none">
+            <img id="endscreen" src="./img/9_intro_outro_screens/game_over/game over!.png">
+            <img id="restart-btn" onclick="restart()" src="./img/restart.png">
+        </div>
 
         <div id="mobile-buttons" class="d-none">
             <div id="walk-buttons">
@@ -58,8 +66,9 @@
             </div>
 
         </div>
-    </canvas>
-    
+    </div>
+
+
 
 </body>
 
