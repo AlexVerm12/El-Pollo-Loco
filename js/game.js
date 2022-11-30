@@ -1,14 +1,22 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let game = document.getElementById('content');
 
 
 function init() {
     canvas = document.getElementById('canvas');
+    initLevel();
     world = new World(canvas, keyboard,);
+    mobileBtn();
     document.getElementById('startscreen-container').classList.add('d-none');
     document.getElementById('endscreen-container').classList.add('d-none');
+    
 }
+
+function restart() {
+    location.reload();
+  }
 
 
 /* Alternative (quick and dirty), um alle Intervalle zu beenden. */
@@ -57,3 +65,54 @@ window.addEventListener('keyup', (event) => {
         keyboard.D = false;
     }
 })
+
+/* Mobile Character Control*/
+
+ function mobileBtn() {
+    document.getElementById('walk-button-left').addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      keyboard.left = true;
+    });
+  
+    document.getElementById('walk-button-left').addEventListener('touchend', (e) => {
+      e.preventDefault();
+      keyboard.left = false;
+    });
+  
+    document.getElementById('walk-button-right').addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      keyboard.right = true;
+    });
+  
+    document.getElementById('walk-button-right').addEventListener('touchend', (e) => {
+      e.preventDefault();
+      keyboard.right = false;
+    });
+  
+    document.getElementById('jump-button').addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      keyboard.space = true;
+    });
+  
+    document.getElementById('jump-button').addEventListener('touchend', (e) => {
+      e.preventDefault();
+      keyboard.space = false;
+    });
+  
+    document.getElementById('shoot-button').addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      keyboard.D = true;
+    });
+  
+    document.getElementById('shoot-button').addEventListener('touchend', (e) => {
+      e.preventDefault();
+      keyboard.D = false;
+    });
+  }
+  
+  
+   /*convert canvas to fullscreen*/
+   
+  function fullscreen() {
+    document.getElementById('Fullscreen').requestFullscreen();
+  }

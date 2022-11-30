@@ -65,6 +65,40 @@ canvas {
     display: none;
 }
 
+#mobile-buttons {
+    width: inherit;
+    position: absolute;
+    bottom: 10px;
+    display: none;
+    justify-content: space-around;
+
+}
+
+#mobile-buttons img {
+    width: 32px;
+    height: 32px;
+    margin: 10px;
+}
+
+#walk-buttons {
+    display: flex;
+}
+
+#action-buttons {
+    display: flex;
+}
+
+.howTopPlay {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Fullscreen {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 
 @media only screen and (max-width:780px) {
     #content {
@@ -95,9 +129,17 @@ canvas {
         background-image: none;
         margin: 0;
     }
+
+    #mobile-buttons {
+        display: flex;
+    }
+
+    .howTopPlay{
+        display: none;
+    }
 }
 
-@media only screen and (max-width:990px) {
+@media only screen and (max-width:900px) {
     #content {
         width: 100%;
     }
@@ -126,6 +168,14 @@ canvas {
         background-image: none;
         margin: 0;
     }
+
+    #mobile-buttons {
+        display: flex;
+    }
+
+    .howTopPlay{
+        display: none;
+    }
 }
 
 
@@ -136,6 +186,14 @@ canvas {
 
     canvas {
         height: 100vh;
+    }
+
+    #mobile-buttons {
+        display: flex;
+    }
+
+    .howTopPlay{
+        display: none;
     }
 
 }

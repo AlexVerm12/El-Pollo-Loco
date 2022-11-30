@@ -17,7 +17,7 @@ class World {
   pickup_sound = new Audio("./audio/pickup.mp3");
   hit_sound = new Audio("./audio/hit.mp3");
   endboss = new Endboss();
- 
+
 
 
 
@@ -34,7 +34,7 @@ class World {
 
   setWorld() {
     this.character.world = this;
-    
+
   }
 
   run() {
@@ -133,15 +133,19 @@ class World {
 
   gameOver() {
     this.level.enemies.forEach((enemy, index) => {
-    if (this.character.isDead() || (enemy.isDead() && enemy instanceof Endboss)) {
-      setTimeout(() => {
-        clearAllIntervals();
-        document.getElementById('endscreen-container').classList.remove('d-none');
-      }, 1500);
-    }
-    
-   
-  });
+      if (this.character.isDead() || (enemy.isDead() && enemy instanceof Endboss)) {
+        setTimeout(() => {
+          clearAllIntervals();
+          document.getElementById('endscreen-container').classList.remove('d-none');
+        }, 1000);
+      }
+      if (enemy.isDead() && enemy instanceof Endboss) {
+        setTimeout(() => {
+          clearAllIntervals();
+          document.getElementById('endscreen-container').classList.remove('d-none');
+        }, 1200);
+      }
+    });
   }
 
 
