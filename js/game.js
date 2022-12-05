@@ -116,3 +116,10 @@ window.addEventListener('keyup', (event) => {
   function fullscreen() {
     document.getElementById('Fullscreen').requestFullscreen();
   }
+
+  function checkScreen(){
+   setInterval(() =>{ if (window.innerHeight < window.innerWidth) {
+      document.getElementById('turnPhone').classList.add('d-none');
+    }
+    },1000)
+  }
