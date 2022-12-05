@@ -136,12 +136,14 @@ class World {
       if (this.character.isDead() || (enemy.isDead() && enemy instanceof Endboss)) {
         setTimeout(() => {
           clearAllIntervals();
+          checkScreen();
           document.getElementById('endscreen-container').classList.remove('d-none');
         }, 1000);
       }
       if (enemy.isDead() && enemy instanceof Endboss) {
         setTimeout(() => {
           clearAllIntervals();
+          checkScreen();
           document.getElementById('endscreen-container').classList.remove('d-none');
         }, 1200);
       }

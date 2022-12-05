@@ -9,6 +9,7 @@ function init() {
   initLevel();
   world = new World(canvas, keyboard,);
   mobileBtn();
+  checkScreen();
   document.getElementById('startscreen-container').classList.add('d-none');
   document.getElementById('endscreen-container').classList.add('d-none');
 
