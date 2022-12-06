@@ -2,12 +2,14 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let game = document.getElementById('content');
+let stopAudio = false;
+console.log('playaudio',stopAudio);
 
 
 function init() {
   canvas = document.getElementById('canvas');
   initLevel();
-  world = new World(canvas, keyboard,);
+  world = new World(canvas, keyboard, stopAudio);
   mobileBtn();
   checkScreen();
   document.getElementById('startscreen-container').classList.add('d-none');
@@ -121,12 +123,21 @@ function checkScreen() {
   }, 10)
 }
 
-function muteAudio(){
-  document.getElementById('audioOff').classList.remove('d-none');
-  document.getElementById('audioOn').classList.add('d-none');
-}
+function muteAudio() {
+  if (stopAudio == false) {
+    document.getElementById('audioOff').classList.remove('d-none');
+    document.getElementById('audioOn').classList.add('d-none');
+    stopAudio = true;
+  }
+   
+  }
 
-function turnSoundOn(){
-  document.getElementById('audioOff').classList.add('d-none');
-  document.getElementById('audioOn').classList.remove('d-none');
+
+function turnSoundOn() {
+  if (stopAudio == true) {
+    document.getElementById('audioOff').classList.add('d-none');
+    document.getElementById('audioOn').classList.remove('d-none');
+    stopAudio = false;
+  }
+ 
 }

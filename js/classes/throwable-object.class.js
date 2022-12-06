@@ -65,10 +65,11 @@ class ThrowableObject extends MovableObject {
    var id1 = setInterval(() => {
      if (this.y > 350) {
       this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+      if (stopAudio == false) {
       this.splash_sound.play();
+      }
       this.speedY = 0;
       clearInterval(id1);
-      
      } else {
       this.playAnimation(this.IMAGES);
      }

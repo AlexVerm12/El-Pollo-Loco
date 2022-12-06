@@ -81,7 +81,9 @@ class World {
           this.level.enemies.splice(index, 1);
         }, 200);
         this.character.jump();
-        this.jump_sound.play();
+        if (stopAudio == false) {
+          this.jump_sound.play();
+        }
       }
     });
   }
@@ -90,7 +92,9 @@ class World {
     this.level.bottles.forEach((bottle, index) => {
       if (this.character.isColliding(bottle)) {
         this.throwableBottles++;
-        this.pickup_sound.play();
+        if (stopAudio == false) {
+          this.pickup_sound.play();
+        }
         this.level.bottles.splice(index, 1);
         this.bottleBar.setPercentage(this.throwableBottles);
       }
@@ -102,14 +106,18 @@ class World {
       this.throwableObjects.forEach((bottle, index2) => {
         if (bottle.isColliding(enemy) && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
           enemy.hit();
-          this.hit_sound.play();
+          if (stopAudio == false) {
+            this.hit_sound.play();
+          }
           this.throwableObjects.splice(index2, 1);
           setTimeout(() => {
             this.level.enemies.splice(index1, 1);
           }, 200);
         } else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
           enemy.hit();
-          this.hit_sound.play();
+          if (stopAudio == false) {
+            this.hit_sound.play();
+          }
           this.endbossBar.setPercentage(enemy.energy);
           setTimeout(() => {
             this.throwableObjects.splice(index2, 1);
@@ -122,7 +130,9 @@ class World {
   collidingCoin() {
     this.level.coins.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
-        this.coin_sound.play();
+        if (stopAudio == false) {
+          this.coin_sound.play();
+        }
         this.totalCoins++;
         this.level.coins.splice(index, 1);
         this.coinBar.setPercentage(this.totalCoins);
