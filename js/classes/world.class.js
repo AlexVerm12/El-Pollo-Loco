@@ -119,7 +119,6 @@ class World {
     })
   }
 
-
   collidingCoin() {
     this.level.coins.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
@@ -134,52 +133,61 @@ class World {
   gameOver() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isDead() || (enemy.isDead() && enemy instanceof Endboss)) {
-        setTimeout(() => {
-          clearAllIntervals();
-          checkScreen();
-          document.getElementById('endscreen-container').classList.remove('d-none');
-        }, 1000);
+        this.characterIsDead();
       }
       if (enemy.isDead() && enemy instanceof Endboss) {
-        setTimeout(() => {
-          clearAllIntervals();
-          checkScreen();
-          document.getElementById('endscreen-container').classList.remove('d-none');
-        }, 1200);
+        this.endbossIsDead();
       }
     });
   }
 
+  characterIsDead() {
+    return setTimeout(() => {
+      clearAllIntervals();
+      checkScreen();
+      document.getElementById('endscreen-container').classList.remove('d-none');
+    }, 1000);
+  }
 
-
-
+  endbossIsDead() {
+    return setTimeout(() => {
+      clearAllIntervals();
+      checkScreen();
+      document.getElementById('endscreen-container').classList.remove('d-none');
+    }, 1200);
+  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(this.camera_x, 0);
+    this.drawMO();
+    // Space for fixed objects
+    this.ctx.translate(-this.camera_x, 0);
+    this.drawDO();
+    this.ctx.translate(this.camera_x, 0);
+    this.ctx.translate(-this.camera_x, 0);
+    // draw() wird immer wieder aufgerufen.
+    let self = this;
+    requestAnimationFrame(function () {
+      self.draw();
+    });
+  }
+
+  drawMO() {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addToMap(this.character);
-    // Space for fixed objects
-    this.ctx.translate(-this.camera_x, 0);
+    this.addObjectsToMap(this.level.enemies);
+  }
+
+  drawDO() {
     this.addToMap(this.statusBar);
     this.addToMap(this.coinBar);
     this.addToMap(this.bottleBar);
     this.addToMap(this.endbossBar);
-    this.ctx.translate(this.camera_x, 0);
-
-    this.addObjectsToMap(this.level.enemies);
-    this.ctx.translate(-this.camera_x, 0);
-
-    // draw() wird immer wieder aufgerufen.
-    let self = this;
-    requestAnimationFrame(function () {
-      self.draw();
-    });
   }
 
   addObjectsToMap(objects) {

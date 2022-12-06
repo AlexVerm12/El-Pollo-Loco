@@ -97,7 +97,7 @@ canvas {
     text-decoration: underline;
 }
 
-.turnphone{
+.turnphone {
     display: flex;
     position: absolute;
     background-color: white;
@@ -148,7 +148,7 @@ canvas {
         display: flex;
     }
 
-    .howTopPlay{
+    .howTopPlay {
         display: none;
     }
 }
@@ -187,7 +187,7 @@ canvas {
         display: flex;
     }
 
-    .howTopPlay{
+    .howTopPlay {
         display: none;
     }
 
@@ -207,7 +207,7 @@ canvas {
         display: flex;
     }
 
-    .howTopPlay{
+    .howTopPlay {
         display: none;
     }
 

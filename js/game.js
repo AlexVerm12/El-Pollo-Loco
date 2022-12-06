@@ -111,13 +111,6 @@ function mobileBtn() {
   });
 }
 
-
-/*convert canvas to fullscreen*/
-
-function fullscreen() {
-  document.getElementById('Fullscreen').requestFullscreen();
-}
-
 function checkScreen() {
   setInterval(() => {
     if (window.innerHeight < window.innerWidth) {
