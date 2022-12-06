@@ -3,7 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let game = document.getElementById('content');
 let stopAudio = false;
-console.log('playaudio',stopAudio);
+
 
 
 function init() {
