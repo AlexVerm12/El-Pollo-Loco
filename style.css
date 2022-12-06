@@ -71,12 +71,6 @@ canvas {
 
 }
 
-#mobile-buttons img {
-    width: 32px;
-    height: 32px;
-    margin: 10px;
-}
-
 #walk-buttons {
     display: flex;
 }
@@ -111,6 +105,31 @@ canvas {
 .turnphone img {
     width: 40px;
     height: 40px;
+}
+
+.game-button {
+    background-color: goldenrod;
+    border-radius: 4px;
+    border-style: solid 2px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    margin-left: 20px;
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.game-button img {
+    width: 32px;
+    height: 32px;
+}
+
+#speaker {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 

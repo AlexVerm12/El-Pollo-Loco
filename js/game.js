@@ -120,3 +120,13 @@ function checkScreen() {
     }
   }, 10)
 }
+
+function muteAudio(){
+  document.getElementById('audioOff').classList.remove('d-none');
+  document.getElementById('audioOn').classList.add('d-none');
+}
+
+function turnSoundOn(){
+  document.getElementById('audioOff').classList.add('d-none');
+  document.getElementById('audioOn').classList.remove('d-none');
+}
