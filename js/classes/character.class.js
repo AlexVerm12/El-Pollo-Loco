@@ -103,21 +103,21 @@ class Character extends MovableObject {
   movingLeft() {
     this.moveLeft();
     this.otherDirection = true;
-    if (!stopAudio) {
-      this.walking_sound.play();
-      this.walking_sound.playbackRate = 2.0;
-    }
+    this.playWalkingSound();
   }
 
   movingRight() {
     this.moveRight();
     this.otherDirection = false;
-    if (!stopAudio) {
+    this.playWalkingSound();
+  }
+
+  playWalkingSound() {
+    if (!stopAudio && !this.isAboveGround()) {
       this.walking_sound.play();
       this.walking_sound.playbackRate = 2.0;
     }
   }
-
 
   intervalAnimation() {
     setInterval(() => {
