@@ -95,7 +95,8 @@ class World {
             if (!this.character.isHurt() && this.character.isColliding(enemy) && this.character.isAboveGround() && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
                 enemy.hit();
                 setTimeout(() => {
-                    const index = this.level.enemies.indexof(enemy);
+                    const index = this.level.enemies.indexOf(enemy);
+                    console.log(index);
                     this.level.enemies.splice(index, 1);
                 }, 200);
                 this.character.jump();
@@ -134,7 +135,8 @@ class World {
                         this.endbossBar.setPercentage(enemy.energy);
                     } else {
                         setTimeout(() => {
-                            this.level.enemies.splice(index1, 1);
+                            const index = this.level.enemies.indexOf(enemy);
+                            this.level.enemies.splice(index, 1);
                         }, 200);
                     }
                 }
