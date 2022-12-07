@@ -6,6 +6,7 @@ let stopAudio = false;
 
 
 
+
 function init() {
   canvas = document.getElementById('canvas');
   initLevel();
@@ -14,7 +15,6 @@ function init() {
   checkScreen();
   document.getElementById('startscreen-container').classList.add('d-none');
   document.getElementById('endscreen-container').classList.add('d-none');
-
 }
 
 function restart() {
@@ -124,20 +124,20 @@ function checkScreen() {
 }
 
 function muteAudio() {
-  if (stopAudio == false) {
+  if (!stopAudio) {
     document.getElementById('audioOff').classList.remove('d-none');
     document.getElementById('audioOn').classList.add('d-none');
     stopAudio = true;
   }
-   
-  }
+
+}
 
 
 function turnSoundOn() {
-  if (stopAudio == true) {
+  if (stopAudio) {
     document.getElementById('audioOff').classList.add('d-none');
     document.getElementById('audioOn').classList.remove('d-none');
     stopAudio = false;
   }
- 
+
 }
