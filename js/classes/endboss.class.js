@@ -4,6 +4,7 @@ class Endboss extends MovableObject {
   y = 53;
   energy = 25;
   speed = 4;
+  win_sound = new Audio ('./audio/win.mp3')
 
 
   IMAGES_ALERT = [
@@ -98,6 +99,7 @@ class Endboss extends MovableObject {
     setInterval(() => {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
+        this.win_sound.play();
       }
     }, 300);
   }
