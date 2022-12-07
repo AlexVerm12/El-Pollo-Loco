@@ -179,7 +179,7 @@ class World {
             clearAllIntervals();
             checkScreen();
             document.getElementById('endscreen-container').classList.remove('d-none');
-        }, 1000);
+        }, 1400);
     }
 
     draw() {
