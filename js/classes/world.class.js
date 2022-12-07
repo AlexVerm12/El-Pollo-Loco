@@ -28,22 +28,25 @@ class World {
         this.ctx = canvas.getContext("2d");
         this.draw();
         this.setWorld();
+        this.playBgSound(); 
         this.run();
-        this.playBgSound();
+          
     }
 
     playBgSound() {
+        this.level.enemies.forEach((enemy) => {
         setInterval(() => {
-            if (!stopAudio) {
+            if (!stopAudio || !(enemy.isDead() && enemy instanceof Endboss)  || !this.character.isDead()) {
                 this.bg_Sound.play();
                 this.bg_Sound.loop = true;
             }
         }, 100)
         setInterval(() => {
-            if (stopAudio) {
+            if (stopAudio || (enemy.isDead() && enemy instanceof Endboss)  || this.character.isDead()) {
                 this.bg_Sound.pause();
             }
         }, 100)
+    })
     }
 
     setWorld() {
@@ -52,7 +55,7 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        setInterval(() => {  
             this.checkCollision();
             this.checkThrowObjects();
         }, 200);
@@ -119,24 +122,21 @@ class World {
     CollidingBottleWithEnemy() {
         this.level.enemies.forEach((enemy, index1) => {
             this.throwableObjects.forEach((bottle, index2) => {
-                if (bottle.isColliding(enemy) && (enemy instanceof Chicken || enemy instanceof SmallChicken)) {
+                if (bottle.isColliding(enemy)) {
                     enemy.hit();
                     if (!stopAudio) {
                         this.hit_sound.play();
                     }
-                    this.throwableObjects.splice(index2, 1);
-                    setTimeout(() => {
-                        this.level.enemies.splice(index1, 1);
-                    }, 200);
-                } else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
-                    enemy.hit();
-                    if (!stopAudio) {
-                        this.hit_sound.play();
-                    }
-                    this.endbossBar.setPercentage(enemy.energy);
                     setTimeout(() => {
                         this.throwableObjects.splice(index2, 1);
                     }, 100);
+                    if (enemy instanceof Endboss) {
+                        this.endbossBar.setPercentage(enemy.energy);
+                    } else {
+                        setTimeout(() => {
+                            this.level.enemies.splice(index1, 1);
+                        }, 200);
+                    }
                 }
             })
         })
@@ -156,7 +156,7 @@ class World {
     }
 
     gameOver() {
-        this.level.enemies.forEach((enemy, index) => {
+        this.level.enemies.forEach((enemy) => {
             if (this.character.isDead() || (enemy.isDead() && enemy instanceof Endboss)) {
                 this.characterIsDead();
             }
