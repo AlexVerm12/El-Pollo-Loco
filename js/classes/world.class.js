@@ -33,10 +33,17 @@ class World {
     }
 
     playBgSound() {
-        if (!stopAudio) {
-            this.bg_Sound.play();
-            this.bg_Sound.loop = true;
-        }
+        setInterval(() => {
+            if (!stopAudio) {
+                this.bg_Sound.play();
+                this.bg_Sound.loop = true;
+            }
+        }, 100)
+        setInterval(() => {
+            if (stopAudio) {
+                this.bg_Sound.pause();
+            }
+        }, 100)
     }
 
     setWorld() {
